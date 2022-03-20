@@ -1,0 +1,94 @@
+/*import React from "react";
+import "./style.css";
+
+export default function App() {
+  return (
+    <div>
+      <h1>Hello StackBlitz!</h1>
+      <p>Start editing to see some magic happen :)</p>
+      {Date};
+    </div>
+  );
+}*/
+
+/*import React, { useState } from 'react';
+import './style.css';
+
+export default function ButtonCounter() {
+  const [counter, setCounter] = useState(0);
+  return (
+    <>
+      {`hoy es ${Date()}`}
+      <br />
+      <button onClick={() => setCounter(counter + 1)}> Presioname </button>
+      <br />
+      {`presionaste el boton ${counter} veces`}
+    </>
+  );
+}*/
+
+/* Modelo componente
+import React, { useState } from 'react';
+
+const Counter = () => {
+  let [count, setCount] = useState(0);
+
+  const onClick = () => {
+    setCount(++count);
+  };
+  return (
+    <div>
+      {Date()}
+      <div
+        className={'contador'}
+        onClick={onClick}
+      >{`Click aquí: ${count}`}</div>
+    </div>
+  );
+};
+
+export default Counter;*/
+
+/*export default function ButtonCounter() {
+  const [counter, setCounter] = useState(0);
+  return (
+    <>
+      {`hoy es ${Date()}`}
+      <br />
+      <button onClick={() => setCounter(counter + 1)}> Presioname </button>
+      <br />
+      {`presionaste el boton ${counter} veces`}
+    </>
+  );
+}
+
+-----------------------------------------------------------------------
+
+const producto = (id, name, description, stock) => ({
+  id: id,
+  name: name,
+  description: description,
+  stock: stock,
+});
+
+const promesa = new Promise((res, rej) => {
+  setTimeout(() => {
+    res(producto(1,"manzana","manzana rica uwu",1));
+  }, 3000);
+});
+
+promesa.then(console.log)*/
+
+//-------------------------------------------------------------------------------------
+
+/* Apis 
+
+const apiURL ="https://pokeapi.co/api/v2/pokemon/"
+
+function getPokemon(id){
+  fetch(`${apiURL}${id}/`).then((resultado) => resultado.json().then((pokemon) => {console.log(pokemon)}))
+}
+
+getPokemon(1)
+
+*/

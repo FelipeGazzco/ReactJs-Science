@@ -1,0 +1,25 @@
+.ItemList{
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    list-style: none;
+}
+
+.ItemList li{
+    width: 20vw;
+    height: fit-content;
+    background-color: #308fac;
+    border-radius: 15px;
+}
+
+.ItemList li p{
+    margin: 1%;
+}
+
+.ItemList li img{
+    margin-top: 2%;
+    height: 10vw;
+    border-radius: 10px;
+}
