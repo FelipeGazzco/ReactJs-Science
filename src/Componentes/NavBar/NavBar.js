@@ -1,6 +1,7 @@
 import React from "react";
 import "./NavBar.css";
 import logo from "./biology.png";
+import { Link } from "react-router-dom";
 
 function NavBar(){
     return(
@@ -11,10 +12,18 @@ function NavBar(){
             </section>
             <section>
                 <ul>
-                    <li>Inicio</li>
-                    <li>Ciencia</li>
-                    <li>Tecnologia</li>
-                    <li>Libros</li>
+                  <Link to={`/detail/`} className="">
+                  Inicio
+                  </Link>
+                  <Link to={`/detail/Ciencia`} className="">
+                  Ciencia
+                  </Link>
+                  <Link to={`/detail/Tecnologia`} className="">
+                  Tecnologia
+                  </Link>
+                  <Link to={`/detail/Libros`} className="">
+                  Libros
+                  </Link>
                 </ul>
             </section>
         </div>
