@@ -7,7 +7,7 @@ function ItemDetail({nombre, urlimg, stock, initial, precio, categoria}){
         <div className="ItemDetail">
         <h1> {nombre} </h1>
         <img src={urlimg}></img>
-        <p> {precio} </p>
+        <p> ${precio * 207} </p>
         <p> {categoria} </p>
         <ItemCount initial={initial} stock={stock} />
     </div>

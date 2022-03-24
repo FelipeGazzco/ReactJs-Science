@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Cuenta(props) {
+function Cuenta(props) {
   let { cuenta } = props;
   let {stock} = props;
   return (
@@ -13,3 +13,5 @@ export default function Cuenta(props) {
     </div>
   );
 }
+
+export default Cuenta;

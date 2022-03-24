@@ -4,12 +4,14 @@ import Cuenta from "../Cuenta/Cuenta";
 function ItemCount(props){ 
 
     const [cuenta, setCuenta] = useState(props.initial);
+    console.log(props.initial);
+    console.log(props.stock);
 
     const SumaProducto = (e) => {
       const sumarCarrito = e.target.getAttribute("name");
       if (sumarCarrito === "comprar") {
         if (props.stock > cuenta) setCuenta(cuenta + 1);
-      } else {
+      }else {
         alert("Sin stock");
       }
     };
@@ -30,14 +32,10 @@ function ItemCount(props){
             <Cuenta cuenta={cuenta} />
           )}
     
-          <button onClick={SumaProducto} className="btn btn-success" name="comprar">
-            Sumar al carrito
+          <button onClick={SumaProducto} name="comprar">
+            Sumar al carrito{" "}
           </button>
-          <button
-            onClick={RestaProducto}
-            className="btn btn-danger"
-            name="restar"
-          >
+          <button onClick={RestaProducto} name="resta">
             Sacar del carrito{" "}
           </button>
         </div>
