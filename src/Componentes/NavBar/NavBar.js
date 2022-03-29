@@ -12,16 +12,16 @@ function NavBar(){
             </section>
             <section>
                 <ul>
-                  <Link to={`/detail/`} className="">
+                  <Link to={`/productos/`} className="">
                   Inicio
                   </Link>
-                  <Link to={`/detail/Ciencia`} className="">
+                  <Link to={`/productos/Ciencia`} className="">
                   Ciencia
                   </Link>
-                  <Link to={`/detail/Tecnologia`} className="">
+                  <Link to={`/productos/Tecnologia`} className="">
                   Tecnologia
                   </Link>
-                  <Link to={`/detail/Libros`} className="">
+                  <Link to={`/productos/Libros`} className="">
                   Libros
                   </Link>
                 </ul>

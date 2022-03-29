@@ -3,14 +3,14 @@ import Cuenta from "../Cuenta/Cuenta";
 
 function ItemCount(props){ 
 
-    const [cuenta, setCuenta] = useState(props.initial);
+    const [cuenta, setCuenta] = useState(0);
     console.log(props.initial);
     console.log(props.stock);
 
     const SumaProducto = (e) => {
       const sumarCarrito = e.target.getAttribute("name");
-      if (sumarCarrito === "comprar") {
-        if (props.stock > cuenta) setCuenta(cuenta + 1);
+      if (props.stock > cuenta) {
+        setCuenta(cuenta + 1);
       }else {
         alert("Sin stock");
       }
@@ -22,6 +22,10 @@ function ItemCount(props){
         alert("Tenes que tener algo en el carrito");
       }
     };
+    const ReseteoProducto = () => {
+      setCuenta(props.initial)
+    }
+
     useEffect(() => {}, []);
 
     return (
@@ -38,6 +42,12 @@ function ItemCount(props){
           <button onClick={RestaProducto} name="resta">
             Sacar del carrito{" "}
           </button>
+          <button onClick={ReseteoProducto} name="reset"> 
+            Reset 
+          </button>
+          <section>
+            <button disabled={props.stock===0} onClick={() => {props.onAddFunctionIC(cuenta); ReseteoProducto()}}> Agregar al carrito</button>
+          </section>
         </div>
     );
 }
