@@ -6,12 +6,12 @@ import { CustomCartContext } from "../../Context/CustomCartContext";
 function Cart(){
     const carritoContext = useContext(CartContext);
     const productosCarrito= carritoContext.productosCarritoAp;
-    console.log("Productos", carritoContext)
+    console.log("Productos", productosCarrito);
     return(
         <ul>
             {productosCarrito?.map(u => (
                 <li key={u.id}>
-                    <p> nombre = {u.nombre}</p>
+                    <p> nombre = {u.item}</p>
                 </li>
             ))}
         </ul>
