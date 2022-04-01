@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Context } from "react";
+import { useContext } from "react";
 import {CartContext} from "./CartContext";
 
 export const CustomCartContext = ({children})=>{

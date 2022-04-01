@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Cuenta from "../Cuenta/Cuenta";
+import { Context } from "react";
+import { CartContext } from "../../../Context/CartContext";
+import { CustomCartContext } from "../../../Context/CustomCartContext";
+import { useContext } from "react";
 
 function ItemCount(props){ 
 

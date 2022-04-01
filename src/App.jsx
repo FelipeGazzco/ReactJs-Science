@@ -22,6 +22,7 @@ function App() {
             <Route path="*" element=""/>
           </Routes>
           <CartWidget/>
+          <Cart/>
         </BrowserRouter>
       </CustomCartContext>
     </div>

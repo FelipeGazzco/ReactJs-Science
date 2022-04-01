@@ -3,6 +3,7 @@ import Cuenta from "../Cuenta/Cuenta";
 import ItemCount from "../ItemCount/ItemCount";
 import { useState } from "react";
 import { useContext } from "react";
+import { Context } from "react";
 import { CartContext } from "../../../Context/CartContext";
 import { CustomCartContext } from "../../../Context/CustomCartContext";
 
@@ -16,9 +17,9 @@ function ItemDetail({nombre, urlimg, stock, initial, precio, categoria}){
     const onAddFunctionIC = (unidadesASumar) => {
         console.log("pringles")
         console.log(unidadesASumar);
-        setProductosAgregados(unidadesASumar)
-        setStockProducto(stock - unidadesASumar)
-        carritoContext.addItem(nombre,urlimg,stock, initial, precio, categoria, unidadesASumar)
+        setProductosAgregados(unidadesASumar);
+        setStockProducto(stock - unidadesASumar);
+        carritoContext.addItem(nombre, unidadesASumar, urlimg,stock, initial, precio, categoria);
     }
 
     return(
