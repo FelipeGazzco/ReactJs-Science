@@ -1,17 +1,21 @@
 import React from "react";
 import { useContext } from "react";
 import {CartContext} from "../../Context/CartContext";
+import { Link } from "react-router-dom";
 import { CustomCartContext } from "../../Context/CustomCartContext";
 
 function Cart(){
-    const carritoContext = useContext(CartContext);
-    const productosCarrito= carritoContext.productosCarritoAp;
-    console.log("Productos", productosCarrito);
+
+    const { productosCarritoAp, addItem, removeItem} = useContext(CustomCartContext);
     return(
         <ul>
-            {productosCarrito?.map(u => (
+            <h1>Productos en carrito:</h1>
+            {productosCarritoAp?.map(u => (
                 <li key={u.id}>
-                    <p> nombre = {u.item}</p>
+                    <h2>{u.item}</h2>
+                    <img src={u.urlimg} alt="Foto item cart"></img>
+                    <p>{u.cuenta} en carrito</p>
+                    <button onClick={removeItem(u.id)}></button>
                 </li>
             ))}
         </ul>

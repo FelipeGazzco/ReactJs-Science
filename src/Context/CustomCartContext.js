@@ -7,9 +7,9 @@ import {CartContext} from "./CartContext";
 export const CustomCartContext = ({children})=>{
     const [productosCarritoAp, setProductosCarritoAp] = useState([]);
 
-    const addItem = (item, unidadesASumar) => {
+    const addItem = (nombre, unidadesASumar, id, urlimg, stock, initial, precio, categoria) => {
         const newProduct = {
-            item, unidadesASumar
+            nombre, unidadesASumar, id, urlimg, stock, initial, precio, categoria
         }
         console.log(newProduct)
         setProductosCarritoAp([...productosCarritoAp, newProduct])

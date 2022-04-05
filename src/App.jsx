@@ -23,7 +23,6 @@ function App() {
             <Route path="/cart" element={<Cart/>}/>
           </Routes>
           <CartWidget/>
-          <Cart/>
         </BrowserRouter>
       </CustomCartContext>
     </div>

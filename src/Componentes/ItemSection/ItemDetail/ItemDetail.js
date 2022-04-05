@@ -8,18 +8,18 @@ import { CartContext } from "../../../Context/CartContext";
 import { CustomCartContext } from "../../../Context/CustomCartContext";
 
 
-function ItemDetail({nombre, urlimg, stock, initial, precio, categoria}){
+function ItemDetail({id, nombre, urlimg, stock, initial, precio, categoria, cuenta}){
 
     const carritoContext = useContext(CartContext);
     const [productosAgregados, setProductosAgregados] = useState(0);
     const [stockProducto, setStockProducto] = useState(stock);
 
-    const onAddFunctionIC = (unidadesASumar) => {
+    const onAddFunctionIC = (props) => {
         console.log("pringles")
-        console.log(unidadesASumar);
-        setProductosAgregados(unidadesASumar);
-        setStockProducto(stock - unidadesASumar);
-        carritoContext.addItem(nombre, unidadesASumar, urlimg,stock, initial, precio, categoria);
+        console.log(cuenta);
+        setProductosAgregados(cuenta);
+        setStockProducto(stock - cuenta);
+        carritoContext.addItem(props.nombre, props.cuenta, props.id, props.urlimg, props.stock, props.initial, props.precio, props.categoria);
     }
 
     return(
@@ -28,7 +28,7 @@ function ItemDetail({nombre, urlimg, stock, initial, precio, categoria}){
         <img src={urlimg}></img>
         <p> ${precio * 207} </p>
         <p> {categoria} </p>
-        <ItemCount initial={initial} stock={stock} onAddFunctionIC={onAddFunctionIC}/>
+        <ItemCount nombre={nombre} id={id} urlimg={urlimg} precio={precio} categoria={categoria} initial={initial} stock={stock} onAddFunctionIC={onAddFunctionIC}/>
     </div>
     )
 }

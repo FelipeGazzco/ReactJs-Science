@@ -50,7 +50,7 @@ function ItemCount(props){
             Reset 
           </button>
           <section>
-            <button disabled={props.stock===0} onClick={() => {props.onAddFunctionIC(cuenta); ReseteoProducto()}}> Agregar al carrito</button>
+            <button disabled={props.stock===0} onClick={() => {props.onAddFunctionIC(props.id, props.nombre, props.urlimg, props.stock, props.initial, props.precio, props.categoria, cuenta); ReseteoProducto()}}> Agregar al carrito</button>
           </section>
         </div>
     );
