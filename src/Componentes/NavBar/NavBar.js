@@ -24,6 +24,9 @@ function NavBar(){
                   <Link to={`/productos/Libros`} className="">
                   Libros
                   </Link>
+                  <Link to={"firebase/"} className="">
+                      Firebase
+                  </Link>
                 </ul>
             </section>
         </div>

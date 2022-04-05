@@ -7,6 +7,7 @@ import ItemDetailContainer from "./Componentes/ItemSection/ItemDetailContainer/I
 import Cart from './Componentes/Cart/Cart';
 import { Context } from 'react';
 import { CustomCartContext } from './Context/CustomCartContext';
+import {FirebasePrueba} from "./Componentes/FirebaseComp/FirebasePrueba";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path='/detail/:id' element={<ItemDetailContainer/>}/>
             <Route path="*" element=""/>
             <Route path="/cart" element={<Cart/>}/>
+            <Route path='/firebase' element={<FirebasePrueba/>}/>
           </Routes>
           <CartWidget/>
         </BrowserRouter>
