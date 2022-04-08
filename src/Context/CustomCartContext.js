@@ -7,18 +7,35 @@ import {CartContext} from "./CartContext";
 export const CustomCartContext = ({children})=>{
     const [productosCarritoAp, setProductosCarritoAp] = useState([]);
 
-    const addItem = (nombre, unidadesASumar, id, urlimg, stock, initial, precio, categoria) => {
-        const newProduct = {
-            nombre, unidadesASumar, id, urlimg, stock, initial, precio, categoria
+    const addItem = (item, cuenta) => { 
+        if(isInCart(item.id)){
+            const newProducts = [...productosCarritoAp];
+            const productosindex = newProducts.findIndex(producto=>producto.id === item.id);
+            newProducts [productosindex].cuenta = newProducts[productosindex].cuenta + cuenta;
+            setProductosCarritoAp(newProducts);
+            console.log("Actualizado", productosCarritoAp);
+        } else {
+            const newProduct ={
+                nombre: item.nombre,
+                categoria: item.categoria,
+                precio: item.precio,
+                urlimg: item.urlimg,
+                id: item.id,
+                idReal: item.idReal,
+                cuenta: cuenta
+            }
+            /*const newProduct ={
+             item, cuenta
+            }*/
+            setProductosCarritoAp([...productosCarritoAp, newProduct])
+            console.log("Actualizado", productosCarritoAp);
         }
-        console.log(newProduct)
-        setProductosCarritoAp([...productosCarritoAp, newProduct])
     }
 
     const removeItem = (itemId)=>{
         console.log('itemId', itemId);
-        const nuevosProductos = productosCarritoAp.filter(producto=>producto.item.id !== itemId);
-        console.log('nuevosProductos',nuevosProductos)
+        const nuevosProductos = productosCarritoAp.filter(producto=>producto.id !== itemId);
+        console.log('nuevosProductos',nuevosProductos);
         setProductosCarritoAp(nuevosProductos);
     }
 
@@ -29,12 +46,23 @@ export const CustomCartContext = ({children})=>{
 
     // valida si un producto ya existe en el carrito
     const isInCart = (id) =>{
+        return productosCarritoAp.some(items => items.id === id)
         //some
         //return valor
     }
 
+    const getTotalPrice = () => {
+        const totalPrice = productosCarritoAp.reduce((acc, items)=>acc+(items.cuenta*items.item.price),0);
+        return totalPrice;
+    }
+    
+    const getTotalCount = () => {
+        const totalCount = productosCarritoAp.reduce((acc,items)=>acc+items.cuenta,0);
+        return totalCount
+    }
+
     return(
-        <CartContext.Provider value={{productosCarritoAp, addItem, removeItem, clear}}>
+        <CartContext.Provider value={{productosCarritoAp, addItem, getTotalCount, getTotalPrice, removeItem, clear}}>
             {children}
         </CartContext.Provider>
     )

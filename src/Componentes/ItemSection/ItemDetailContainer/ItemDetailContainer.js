@@ -34,7 +34,7 @@ function ItemDetailContainer(){
 
   }, []);
 
-  return <ItemDetail {...producto} />;
+  return <ItemDetail item={producto} />;
 };
 
 export default ItemDetailContainer;

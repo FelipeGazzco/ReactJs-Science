@@ -1,18 +1,13 @@
 import React, {useState, useEffect} from "react";
 import Cuenta from "../Cuenta/Cuenta";
-import { Context } from "react";
 import { CartContext } from "../../../Context/CartContext";
 import { CustomCartContext } from "../../../Context/CustomCartContext";
 import { useContext } from "react";
 
 function ItemCount(props){ 
 
-    const [cuenta, setCuenta] = useState(0);
-    console.log(props.initial);
-    console.log(props.stock);
-
+    const [cuenta, setCuenta] = useState(0)
     const SumaProducto = (e) => {
-      const sumarCarrito = e.target.getAttribute("name");
       if (props.stock > cuenta) {
         setCuenta(cuenta + 1);
       }else {
@@ -50,7 +45,7 @@ function ItemCount(props){
             Reset 
           </button>
           <section>
-            <button disabled={cuenta===0} onClick={() => {props.onAddFunctionIC(props.id, props.nombre, props.urlimg, props.stock, props.initial, props.precio, props.categoria, cuenta); ReseteoProducto()}}> Agregar al carrito</button>
+            <button disabled={cuenta===0} onClick={() => {props.onAddFunctionIC(cuenta); ReseteoProducto()}}> Agregar al carrito</button>
           </section>
         </div>
     );

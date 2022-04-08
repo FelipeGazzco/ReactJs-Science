@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 function CartWidget() {
   return (
     <div className="CartWidget"> 
-        <img src={logo}/>
         <Link to={`/cart/`} className="">
-          Carrito
+          <img src={logo}/>
         </Link>
     </div>
   );
