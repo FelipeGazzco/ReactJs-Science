@@ -3,12 +3,14 @@ import { useContext } from "react";
 import {CartContext} from "../../Context/CartContext";
 import { Link } from "react-router-dom";
 import { CustomCartContext } from "../../Context/CustomCartContext";
-import { clear } from "@testing-library/user-event/dist/clear";
+import {collection, doc, getDoc, addDoc, updateDoc, Timestamp} from "firebase/firestore";
+import { db } from "../../utils/firebase";
 
 function Cart(){
     const carritoContext = useContext(CartContext);
     const productosCarritoAp2 = carritoContext.productosCarritoAp;
     const removeItem = carritoContext.removeItem;
+    const clear = carritoContext.clear;
     console.log(productosCarritoAp2);
 
     const sendOrder = (e) => {
@@ -22,29 +24,29 @@ function Cart(){
                 phone,
                 email
             },
-            items: productosCarrito,
+            items: productosCarritoAp2,
             total: carritoContext.getTotalPrice(),
             date: Timestamp.fromDate(new Date())
         }
         const ordersCollection = collection(db, 'orders');
-        const docReference = await addDoc(ordersCollection, newOrder);
+        const docReference = addDoc(ordersCollection, newOrder);
+        const updateProduct = async()=>{
+            const docReference = doc(db,'items');
+            const docResponse = getDoc(docReference);
+            const docData = docResponse.data();
+            console.log('informacion documento json', docData);
+            await updateDoc(docReference,{...docData, stock: 10});
+        }
+    
+        const updateOrder = async()=>{
+            const orderReference = doc(db,'orders');
+            const docResponse = getDoc(orderReference);
+            const orderInfo = docResponse.data();
+            console.log('info orden', orderInfo);
+            await updateDoc(orderReference,{...orderInfo, buyer:{...orderInfo.buyer, name: nombre}})
+        }
     }
 
-    const updateProduct = async()=>{
-        const docReference = doc(db,'items', id);
-        const docResponse = await getDoc(docReference);
-        const docData = docResponse.data();
-        console.log('informacion documento json', docData);
-        await updateDoc(docReference,{...docData, stock: 10});
-    }
-
-    const updateOrder = async()=>{
-        const orderReference = doc(db,'orders', id);
-        const docResponse = await getDoc(orderReference);
-        const orderInfo = docResponse.data();
-        console.log('info orden', orderInfo);
-        await updateDoc(orderReference,{...orderInfo, buyer:{...orderInfo.buyer, name: nombre}})
-    }
     //const { productosCarritoAp2, addItem, removeItem} = useContext(CartContext);
     return(
         <ul>

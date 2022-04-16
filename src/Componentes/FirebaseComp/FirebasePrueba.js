@@ -1,6 +1,6 @@
 import {collection, doc, getDocs} from "firebase/firestore";
 import { useEffect } from "react";
-import { db } from "../../utils/Firebase";
+import { db } from "../../utils/firebase";
 
 export const FirebasePrueba = () => {
 

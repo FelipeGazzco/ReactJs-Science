@@ -52,7 +52,8 @@ export const CustomCartContext = ({children})=>{
     }
 
     const getTotalPrice = () => {
-        const totalPrice = productosCarritoAp.reduce((acc, items)=>acc+(items.cuenta*items.item.price),0);
+        const totalPrice = productosCarritoAp.reduce((acc, item)=>acc+(item.cuenta*item.precio),0);
+        console.log("Enviado");
         return totalPrice;
     }
     

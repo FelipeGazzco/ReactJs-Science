@@ -3,7 +3,7 @@ import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import {collection, doc, getDocs} from "firebase/firestore";
-import { db } from "../../../utils/Firebase";
+import { db } from "../../../utils/firebase";
 
 function ItemListContainer(props){
   const { category } = useParams();

@@ -13,9 +13,6 @@ function ItemDetail({item}){
     const carritoContext = useContext(CartContext);
     const [productosAgregados, setProductosAgregados] = useState(0);
     const [stockProducto, setStockProducto] = useState(10);
-    const onAddFunctionIC = (cuenta) => {
-        carritoContext.addItem(item, cuenta);
-    }
 
     return(
         <div className="ItemDetail">
@@ -23,7 +20,7 @@ function ItemDetail({item}){
         <img src={item.urlimg}></img>
         <p> ${item.precio * 207} </p>
         <p> {item.categoria} </p>
-        <ItemCount initial={item.initial} stock={item.stock} onAddFunctionIC={()=>onAddFunctionIC()}/>
+        <ItemCount initial={item.initial} stock={item.stock} item= {item}/>
     </div>
     )
 }
