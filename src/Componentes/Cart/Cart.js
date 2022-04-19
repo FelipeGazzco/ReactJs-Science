@@ -5,12 +5,17 @@ import { Link } from "react-router-dom";
 import { CustomCartContext } from "../../Context/CustomCartContext";
 import {collection, doc, getDoc, addDoc, updateDoc, Timestamp} from "firebase/firestore";
 import { db } from "../../utils/firebase";
+import './Cart.css';
+
 
 function Cart(){
     const carritoContext = useContext(CartContext);
     const productosCarritoAp2 = carritoContext.productosCarritoAp;
     const removeItem = carritoContext.removeItem;
     const clear = carritoContext.clear;
+    const getTotalPrice = carritoContext.getTotalPrice;
+    const getItemPrice = carritoContext.getItemPrice;
+    const deleteItem = carritoContext.deleteItem;
     console.log(productosCarritoAp2);
 
     const sendOrder = (e) => {
@@ -45,21 +50,29 @@ function Cart(){
             console.log('info orden', orderInfo);
             await updateDoc(orderReference,{...orderInfo, buyer:{...orderInfo.buyer, name: nombre}})
         }
+        updateProduct();
+        updateOrder();
     }
 
     //const { productosCarritoAp2, addItem, removeItem} = useContext(CartContext);
     return(
-        <ul>
+        <ul className="Cart">
             <h1>Productos en carrito:</h1>
             <button onClick={clear}>Vaciar Cart</button>
             {productosCarritoAp2?.map(u => (
                 <li key={u.id}>
-                    <h2>{u.nombre}</h2>
-                    <img src={u.urlimg} alt="Foto item cart"></img>
-                    <p>{u.cuenta} en carrito</p>
-                    <button>Eliminar producto</button>
+                    <div>
+                       <h2>{u.nombre}</h2>
+                       <img src={u.urlimg} alt="Foto item cart"></img>
+                    </div>
+                    <div>
+                       <p>{u.cuenta} en carrito</p>
+                       <p> {getItemPrice(u)}</p>
+                       <button onClick={deleteItem(u.id)}>Eliminar producto</button>
+                    </div>
                 </li>
             ))}
+            <p>Total: ${getTotalPrice()}</p>
             <form onSubmit={sendOrder}>
                 <input type="text" placeholder="Nombre"></input>
                 <input type="text" placeholder="Telefono"></input>

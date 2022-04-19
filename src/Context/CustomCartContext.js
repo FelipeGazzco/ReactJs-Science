@@ -44,6 +44,11 @@ export const CustomCartContext = ({children})=>{
         setProductosCarritoAp([]);
     }
 
+    const deleteItem = (item2id) =>{
+        var newArray = productosCarritoAp.filter((item) => item.id !== item2id);
+        console.log(newArray);
+    }
+
     // valida si un producto ya existe en el carrito
     const isInCart = (id) =>{
         return productosCarritoAp.some(items => items.id === id)
@@ -52,18 +57,24 @@ export const CustomCartContext = ({children})=>{
     }
 
     const getTotalPrice = () => {
-        const totalPrice = productosCarritoAp.reduce((acc, item)=>acc+(item.cuenta*item.precio),0);
-        console.log("Enviado");
+        const totalPrice = productosCarritoAp.reduce((acc, item)=>acc+(item.cuenta*item.precio*207),0);
+        return totalPrice;
+    }
+
+    const getItemPrice = (item) => {
+        //const totalPrice = productosCarritoAp.reduce((acc, item)=>acc+(item.cuenta*item.precio*207),0);
+        const totalPrice = item.cuenta*item.precio*207
         return totalPrice;
     }
     
     const getTotalCount = () => {
         const totalCount = productosCarritoAp.reduce((acc,items)=>acc+items.cuenta,0);
+        console.log(totalCount);
         return totalCount
     }
 
     return(
-        <CartContext.Provider value={{productosCarritoAp, addItem, getTotalCount, getTotalPrice, removeItem, clear}}>
+        <CartContext.Provider value={{productosCarritoAp, deleteItem, getItemPrice, addItem, getTotalCount, getTotalPrice, removeItem, clear}}>
             {children}
         </CartContext.Provider>
     )
