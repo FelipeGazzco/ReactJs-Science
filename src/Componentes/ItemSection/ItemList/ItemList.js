@@ -2,7 +2,6 @@ import React from "react";
 import ItemBase from "../ItemBase/ItemBase";
 
 function ItemList({productos}){
-    console.log(productos);
     return (
         <ul className="ItemList">
           {productos?.map(

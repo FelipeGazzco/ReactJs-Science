@@ -7,7 +7,6 @@ import { db } from "../../../utils/firebase";
 
 function ItemListContainer(props){
   const { category } = useParams();
-  console.log(category);
   const [ListaItemsMostrar, setProductos] = useState([]);
 
   useEffect(() => {

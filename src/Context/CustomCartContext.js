@@ -33,7 +33,6 @@ export const CustomCartContext = ({children})=>{
     }
 
     const removeItem = (itemId)=>{
-        console.log('itemId', itemId);
         const nuevosProductos = productosCarritoAp.filter(producto=>producto.id !== itemId);
         console.log('nuevosProductos',nuevosProductos);
         setProductosCarritoAp(nuevosProductos);
@@ -42,11 +41,6 @@ export const CustomCartContext = ({children})=>{
     // Remover todos los items
     const clear = ()=>{
         setProductosCarritoAp([]);
-    }
-
-    const deleteItem = (item2id) =>{
-        var newArray = productosCarritoAp.filter((item) => item.id !== item2id);
-        console.log(newArray);
     }
 
     // valida si un producto ya existe en el carrito
@@ -74,7 +68,7 @@ export const CustomCartContext = ({children})=>{
     }
 
     return(
-        <CartContext.Provider value={{productosCarritoAp, deleteItem, getItemPrice, addItem, getTotalCount, getTotalPrice, removeItem, clear}}>
+        <CartContext.Provider value={{productosCarritoAp, getItemPrice, addItem, getTotalCount, getTotalPrice, removeItem, clear}}>
             {children}
         </CartContext.Provider>
     )
