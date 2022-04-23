@@ -40,10 +40,10 @@ function ItemCount({props, item}){
       )}
 
       <button onClick={SumaProducto} name="comprar">
-        Sumar al carrito{" "}
+        +1{" "}
       </button>
       <button onClick={RestaProducto} name="resta">
-        Sacar del carrito{" "}
+        -1{" "}
       </button>
       <button onClick={ReseteoProducto} name="reset"> 
         Reset 

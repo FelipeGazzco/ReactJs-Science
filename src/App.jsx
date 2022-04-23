@@ -8,6 +8,7 @@ import Cart from './Componentes/Cart/Cart';
 import { Context } from 'react';
 import { CustomCartContext } from './Context/CustomCartContext';
 import {FirebasePrueba} from "./Componentes/FirebaseComp/FirebasePrueba";
+import Cuatro from "./Componentes/404/Cuatro";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             <Route path='/productos/' element={<ItemListContainer/>}/>
             <Route path='/productos/:category' element={<ItemListContainer/>}/>
             <Route path='/detail/:id' element={<ItemDetailContainer/>}/>
-            <Route path="*" element=""/>
+            <Route path="*" element={<Cuatro/>}/>
             <Route path="/cart" element={<Cart/>}/>
             <Route path='/firebase' element={<FirebasePrueba/>}/>
           </Routes>
