@@ -19,6 +19,7 @@ function EndBuy(props){
         const nombre = e.target[0].value;
         const phone = e.target[1].value;
         const email = e.target[2].value;
+        //probar meter todo esto en update
         const newOrder = {
             buyer:{
                 name: nombre,
