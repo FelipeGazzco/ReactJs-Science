@@ -23,6 +23,5 @@ Para usar la pagina apropiadamente se tiene que tener instalado:
 
 `npm i react-router-dom`
 
-https://github.com/FelipeGazzco/ReactJs-Science-Fair/blob/master/Animation.gif
-
+! [image] (https://github.com/FelipeGazzco/ReactJs-Science-Fair/blob/master/Animation.gif)
 
