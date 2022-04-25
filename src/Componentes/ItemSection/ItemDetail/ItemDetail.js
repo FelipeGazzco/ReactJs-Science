@@ -1,11 +1,9 @@
 import React from "react";
-import Cuenta from "../Cuenta/Cuenta";
 import ItemCount from "../ItemCount/ItemCount";
 import { useState } from "react";
 import { useContext } from "react";
-import { Context } from "react";
 import { CartContext } from "../../../Context/CartContext";
-import { CustomCartContext } from "../../../Context/CustomCartContext";
+import "./ItemDetail.css";
 
 
 function ItemDetail({item}){
@@ -16,12 +14,18 @@ function ItemDetail({item}){
 
     return(
         <div className="ItemDetail">
-        <h1> {item.nombre} </h1>
-        <img src={item.urlimg}></img>
-        <p> ${item.precio * 207} </p>
-        <p> {item.categoria} </p>
-        <ItemCount initial={item.initial} stock={item.stock} item= {item}/>
-    </div>
+            <div>
+                <h1> {item.nombre} </h1>
+                <img src={item.urlimg}></img>
+                <p> ${item.precio * 207} </p>
+                <p>{item.stock} en stock</p>
+                <p> {item.categoria} </p>
+                <ItemCount initial={item.initial} stock={item.stock} item= {item}/>
+            </div>
+            <div className="divDos">
+                {item.texto}
+            </div>
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import Cuenta from "../Cuenta/Cuenta";
 import { CartContext } from "../../../Context/CartContext";
 import { CustomCartContext } from "../../../Context/CustomCartContext";
 import { useContext } from "react";
+import "./ItemCount.css";
 
 function ItemCount({props, item}){ 
 
@@ -32,25 +33,26 @@ function ItemCount({props, item}){
 
 
   return (
-    <div>
+    <div className="ItemCount">
       {cuenta === 0 ? (
         <p> ? </p>
       ) : (
         <Cuenta cuenta={cuenta} />
       )}
-
-      <button onClick={SumaProducto} name="comprar">
-        +1{" "}
-      </button>
-      <button onClick={RestaProducto} name="resta">
-        -1{" "}
-      </button>
-      <button onClick={ReseteoProducto} name="reset"> 
-        Reset 
-      </button>
-      <section>
-        <button disabled={cuenta===0} onClick={() => {onAddFunctionIC(cuenta); ReseteoProducto()}}> Agregar al carrito</button>
-      </section>
+      <div className="secondDiv">
+          <button onClick={SumaProducto} name="comprar">
+            +1{" "}
+          </button>
+          <button onClick={RestaProducto} name="resta">
+            -1{" "}
+          </button>
+          <button onClick={ReseteoProducto} name="reset"> 
+            Reset 
+          </button>
+          <section>
+            <button disabled={cuenta===0} onClick={() => {onAddFunctionIC(cuenta); ReseteoProducto()}}> Agregar al carrito</button>
+          </section>
+        </div>
     </div>
 );
 }

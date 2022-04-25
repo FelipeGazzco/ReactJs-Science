@@ -13,7 +13,6 @@ export const CustomCartContext = ({children})=>{
             const productosindex = newProducts.findIndex(producto=>producto.id === item.id);
             newProducts [productosindex].cuenta = newProducts[productosindex].cuenta + cuenta;
             setProductosCarritoAp(newProducts);
-            console.log("Actualizado", productosCarritoAp);
         } else {
             const newProduct ={
                 nombre: item.nombre,
@@ -28,26 +27,20 @@ export const CustomCartContext = ({children})=>{
              item, cuenta
             }*/
             setProductosCarritoAp([...productosCarritoAp, newProduct])
-            console.log("Actualizado", productosCarritoAp);
         }
     }
 
     const removeItem = (itemId)=>{
         const nuevosProductos = productosCarritoAp.filter(producto=>producto.id !== itemId);
-        console.log('nuevosProductos',nuevosProductos);
         setProductosCarritoAp(nuevosProductos);
     }
 
-    // Remover todos los items
     const clear = ()=>{
         setProductosCarritoAp([]);
     }
 
-    // valida si un producto ya existe en el carrito
     const isInCart = (id) =>{
         return productosCarritoAp.some(items => items.id === id)
-        //some
-        //return valor
     }
 
     const getTotalPrice = () => {
@@ -56,14 +49,12 @@ export const CustomCartContext = ({children})=>{
     }
 
     const getItemPrice = (item) => {
-        //const totalPrice = productosCarritoAp.reduce((acc, item)=>acc+(item.cuenta*item.precio*207),0);
         const totalPrice = item.cuenta*item.precio*207
         return totalPrice;
     }
     
     const getTotalCount = () => {
         const totalCount = productosCarritoAp.reduce((acc,items)=>acc+items.cuenta,0);
-        console.log(totalCount);
         return totalCount
     }
 

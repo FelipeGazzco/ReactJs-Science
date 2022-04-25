@@ -20,6 +20,7 @@
 }
 
 .Cart li div img {
-    width: 40vw;
+    max-width: 70%;
     padding-top: 2%;
+    max-height: 20vh;
 }

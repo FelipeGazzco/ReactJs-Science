@@ -3,6 +3,7 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 import {collection, doc, getDocs} from "firebase/firestore";
 import { db } from "../../../utils/firebase";
+import "./ItemDetailContainer.css";
 
 function ItemDetailContainer(){
 
@@ -16,7 +17,6 @@ function ItemDetailContainer(){
       //carga inicial
       const query = collection(db, "items");
       const response = await getDocs(query);
-      console.log("respuesta", response);
 
       /*carga id
       const newDocument={
@@ -26,7 +26,6 @@ function ItemDetailContainer(){
 
       //carga datos 
       const dataItems = response.docs.map(doc => {return{id: doc.id, ...doc.data()}});
-      console.log("data Items", dataItems);
       setProductos(dataItems);
       setProducto(dataItems.find((e) => e.id == id));
     }
@@ -34,7 +33,11 @@ function ItemDetailContainer(){
 
   }, []);
 
-  return <ItemDetail item={producto} />;
+  return (
+    <div className="centering">
+      <ItemDetail item={producto} />;
+    </div>
+  )
 };
 
 export default ItemDetailContainer;

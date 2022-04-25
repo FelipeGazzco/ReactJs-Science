@@ -2,7 +2,7 @@ import React from "react";
 import { async } from '@firebase/util';
 import { useContext, useState } from "react";
 import {CartContext} from "../../Context/CartContext";
-import {collection, doc, getDoc, addDoc, updateDoc, Timestamp} from "firebase/firestore";
+import {collection, where, doc, getDoc, addDoc, increment, updateDoc, writeBatch, Timestamp, query, getDocs, documentId} from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import './Cart.css';
 import { Link } from "react-router-dom";
@@ -12,14 +12,17 @@ function EndBuy(props){
     const carritoContext = useContext(CartContext);
     const productosCarritoAp2 = carritoContext.productosCarritoAp;
     const clear = carritoContext.clear;
+    const [orderId, setOrderId] = useState(null)
 
-
-    const sendOrder = (e) => {
+    const sendOrder = async(e) => {
         e.preventDefault();
         const nombre = e.target[0].value;
         const phone = e.target[1].value;
         const email = e.target[2].value;
-        //probar meter todo esto en update
+
+        const ordersCollection = collection(db, 'orders');
+        const productosRef = collection(db, 'items')
+
         const newOrder = {
             buyer:{
                 name: nombre,
@@ -30,25 +33,20 @@ function EndBuy(props){
             total: carritoContext.getTotalPrice()*207,
             date: Timestamp.fromDate(new Date())
         }
-        const ordersCollection = collection(db, 'orders');
+
+        const batch = writeBatch(db)
+        const productCartIds = productosCarritoAp2.map((el) => el.id)
+        const q = query(productosRef, where(documentId(), 'in', productCartIds))
+        const productos = await getDocs(q)
+        const outOfStock = []
+
+
+        const docReference = await addDoc(ordersCollection, newOrder).then((doc) => {
+            alert("Gracias por tu compra. Tu codigo de orden es " + (doc.id) + ".");
+        });
+
         clear();
     }
-
-    /*const updateProduct = async()=>{
-        const docReference = doc(db,'items', e);
-        const docResponse =  await getDoc(docReference);
-        const docData = docResponse.data();
-        console.log('informacion documento json', docData);
-        await updateDoc(docReference,{...docData, stock: 10});
-    }
-
-    const updateOrder = async()=>{
-        const orderReference = doc(db,'orders', );
-        const docResponse = await getDoc(orderReference);
-        const orderInfo = docResponse.data();
-        console.log('info orden', orderInfo);
-        await updateDoc(orderReference,{...orderInfo, buyer:{...orderInfo.buyer}})
-    }*/
 
     if(props.show){
         return(
