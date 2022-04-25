@@ -25,3 +25,4 @@ Para usar la pagina apropiadamente se tiene que tener instalado:
 
 https://github.com/FelipeGazzco/ReactJs-Science-Fair/blob/master/Animation.gif
 
+
